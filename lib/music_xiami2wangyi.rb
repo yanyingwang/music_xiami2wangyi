@@ -38,7 +38,7 @@ class MusicXiami2wangyi
       page = Mechanize.new.get url
       songs = page.css("td.song_name")
       songs.each do |s|
-        files << "#{s.css('a').first.text} - #{s.css('a.artist_name').text}.mp3"
+        files << "#{s.css('a.artist_name').text} - #{s.css('a').first.text}.mp3"
       end
     end
     @songs = files
@@ -51,9 +51,11 @@ class MusicXiami2wangyi
   def xml_songs
     @xml_songs ||= gen_xml_songs
   end
+
   def gen_xml_songs
-    songs = [ "Sound Of Silence - Ania.mp3",
-              "Coherence - Kristin Øhrn Dyrud.mp3" ]
+    # for test
+    # songs = [ "Sound Of Silence - Ania.mp3",
+    #           "Coherence - Kristin Øhrn Dyrud.mp3" ]
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.List('ListName' => "虾米红心#{time}") do
         songs.each do |s|
