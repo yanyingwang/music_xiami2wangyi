@@ -31,6 +31,12 @@
 
     $ m.gen_xml_songs
 
+## 歌单示例：
+作者导出的本人的虾米歌单，作为示例如下：
+
+<https://github.com/yanyingwang/music_xiami2wangyi/blob/master/xiami-170403.kgl>
+
+
 ## 导入歌单：
 如果导出歌单成功，即在此目录下生成类似`xiami-170403.kgl`的文件。然后打开网易云音乐客户端（注意：ubuntu客户端不支持导入歌单）导入歌单即可。
 
