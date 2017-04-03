@@ -1,3 +1,3 @@
-module MusicXiami2wangyi
+class MusicXiami2wangyi
   VERSION = "0.1.0"
 end

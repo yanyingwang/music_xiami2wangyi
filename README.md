@@ -21,8 +21,19 @@ Or install it yourself as:
     $ gem install music_xiami2wangyi
 
 ## Usage
+~~~ruby
+m = MusicXiami2wangyi.new("3278030")
 
-TODO: Write usage instructions here
+m.count_page_end_num
+m.page_end_num
+m.page_nums
+
+m. crawl_music_file_names
+m.songs
+
+m.gen_xml_songs
+m.xml_songs
+~~~
 
 ## Development
 
