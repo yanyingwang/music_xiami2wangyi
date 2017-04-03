@@ -1,8 +1,63 @@
 # MusicXiami2wangyi
+用Ruby实现的，抓取用户虾米音乐的加心歌曲，生成酷狗kgl文件格式，以来导入到用户的网易云音乐歌单的工具。
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/music_xiami2wangyi`. To experiment with that code, run `bin/console` for an interactive prompt.
+## 如你在使用中，发现有露歌现象，请逐个排查确确实问题后，联系我修复问题：
+1. 查看生成的xiami-17xxxxx.kgl文件，确定歌曲是否已被抓取。
+2. 如果歌曲确定以备抓取，请确认文件名是否被正确抓取。
+3. 如果文件名正确，请到网易云音乐搜索此文件名歌曲，以确认网易曲库存在此歌曲。
+4. 如果确认网易曲库存在此歌曲，亦或此歌曲的命名不同但是有相似规律，请记录之。
+5. 联系我时，请提供以上信息，以供我快速排除修复问题。
 
-TODO: Delete this and the text above, and describe your gem
+# 使用手册
+## 确定自己虾米用户的ID：
+登录自己的虾米音乐主页即可通过url链接判断出自己虾米用户的ID，如作者本人的主页为<http://www.xiami.com/u/3278030>，则我的用户ID为3278030。
+
+## 克隆本仓库：
+
+    $ git clone git@github.com:yanyingwang/music_xiami2wangyi.git
+
+## 进入根目录并且进而进入console：
+
+    $ cd music_xiami2wangyi && ./bin/console
+
+## 生成用户实例，注意替换作者ID成自己的用户ID：
+
+    $ m = MusicXiami2wangyi.new("3278030")
+
+## 抓取导出歌单：
+
+    $ m.gen_xml_songs
+
+## 导入歌单：
+如果导出歌单成功，即在此目录下生成类似`xiami-170403.kgl`的文件。然后打开网易云音乐客户端（注意：ubuntu客户端不支持导入歌单）导入歌单即可。
+
+## 完全方法索引示例：
+~~~ruby
+m = MusicXiami2wangyi.new("3278030")
+
+m.count_page_end_num
+m.page_end_num
+m.page_nums
+
+m. crawl_music_file_names
+m.songs
+
+m.gen_xml_songs
+m.xml_songs
+~~~
+
+
+## 使用示例之图片：
+![cmd](https://raw.githubusercontent.com/yanyingwang/music_xiami2wangyi/master/screenshots/cmd.png)
+
+![import](https://raw.githubusercontent.com/yanyingwang/music_xiami2wangyi/master/screenshots/import.png)
+
+![import-done](https://raw.githubusercontent.com/yanyingwang/music_xiami2wangyi/master/screenshots/import-done.png)
+
+
+
+
+
 
 ## Installation
 
@@ -21,19 +76,6 @@ Or install it yourself as:
     $ gem install music_xiami2wangyi
 
 ## Usage
-~~~ruby
-m = MusicXiami2wangyi.new("3278030")
-
-m.count_page_end_num
-m.page_end_num
-m.page_nums
-
-m. crawl_music_file_names
-m.songs
-
-m.gen_xml_songs
-m.xml_songs
-~~~
 
 ## Development
 
