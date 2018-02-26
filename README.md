@@ -29,6 +29,8 @@ sudo chmod 1777 /tmp/.X11-unix
 sudo chown root /tmp/.X11-unix/
 ~~~
 
+## 虾米客户端
+目前新版的虾米客户端已经不支持歌单导入，但可以[下载](https://raw.githubusercontent.com/yanyingwang/music_xiami2wangyi/master/cloudmusicsetup_2.1.1.30494_baidupc.exe)旧版的PC客户端安装使用导入歌单功能。
 
 # 使用手册
 
