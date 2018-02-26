@@ -1,6 +1,9 @@
 require "music_xiami2wangyi/version"
-require 'mechanize'
 require 'active_support/all'
+require 'mechanize'
+require 'headless'
+require 'watir'
+require 'nokogiri'
 
 
 class MusicXiami2wangyi
@@ -13,13 +16,31 @@ class MusicXiami2wangyi
     @page_end_num ||= count_page_end_num
   end
 
+  def start_browser
+    #headless = Headless.new
+    #headless.start
+    @browser = Watir::Browser.start("www.xiami.com")
+  end
+
+  def close_browser
+    @browser.close
+    #headless.destroy
+  end
+
   def count_page_end_num
-    page = Mechanize.new.get @lib_song_url
+    start_browser
+
+    @browser.goto @lib_song_url
+    page = Nokogiri::HTML.parse(@browser.html)
+
     until page.css(".all_page a.p_num").last.text != "…"
       next_page_num = page.css(".all_page a.p_num").last['href'].split("/").last
-      url = @lib_song_url + "/page/#{next_page_num}"
-      page = Mechanize.new.get url
+      @browser.goto @lib_song_url + "/page/#{next_page_num}"
+      page =  Nokogiri::HTML.parse(@browser.html)
     end
+
+    close_browser
+
     @page_end_num = page.css(".all_page a.p_num").last['href'].split("/").last
   end
 
@@ -33,14 +54,19 @@ class MusicXiami2wangyi
 
   def crawl_music_file_names
     files = []
+
+    start_browser
     page_nums.each do |pn|
       url = @lib_song_url + "/page/#{pn}"
-      page = Mechanize.new.get url
+      @browser.goto url
+      page = Nokogiri::HTML.parse(@browser.html)
       songs = page.css("td.song_name")
       songs.each do |s|
         files << "#{s.css('a.artist_name').text} - #{s.css('a').first.text}.mp3"
       end
     end
+    close_browser
+
     @songs = files
   end
 

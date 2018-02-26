@@ -11,7 +11,27 @@
 4. 如果确认网易曲库存在此歌曲，亦或此歌曲的命名不同但是有相似规律，请记录之。
 5. 联系我时，请提供以上信息，以供我快速排除修复问题。
 
+
+
+
+## [Quartz](https://www.xquartz.org/)
+请首先安装Quzrtz在MacOS系统上，因为本项目在解析虾米网站的时候，使用了chrome浏览器渲染页面，以来跳过反爬虫机制。
+
+## chromeriver
+
+    $ brew install chromedriver
+
+## /tmp/.X11-unix问题
+请执行以下命令来修复xfvb在macos下的[问题](https://github.com/leonid-shevtsov/headless/issues/80)。
+~~~shell
+mkdir /tmp/.X11-unix
+sudo chmod 1777 /tmp/.X11-unix
+sudo chown root /tmp/.X11-unix/
+~~~
+
+
 # 使用手册
+
 ## 确定自己虾米用户的ID：
 登录自己的虾米音乐主页即可通过url链接判断出自己虾米用户的ID，如作者本人的主页为<http://www.xiami.com/u/3278030>，则我的用户ID为3278030。
 
@@ -21,7 +41,7 @@
 
 ## 进入根目录并且进而进入console：
 
-    $ cd music_xiami2wangyi && ./bin/console
+    $ cd music_xiami2wangyi && bundle && ./bin/console
 
 ## 生成用户实例，注意替换作者ID成自己的用户ID：
 
