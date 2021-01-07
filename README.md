@@ -19,6 +19,8 @@
 
 ## chromeriver
 
+    $ bundle config build.ffi --with-cflags="-Wno-error=implicit-function-declaration"
+    $ brew install automake autoconf libtool
     $ brew install chromedriver
 
 ## /tmp/.X11-unix问题

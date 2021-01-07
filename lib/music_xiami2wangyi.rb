@@ -9,7 +9,7 @@ require 'nokogiri'
 class MusicXiami2wangyi
 
   def initialize(xiami_user_id)
-    @lib_song_url = "http://www.xiami.com/space/lib-song/u/#{xiami_user_id}"
+    @lib_song_url = "https://emumo.xiami.com/space/lib-song/u/#{xiami_user_id}"
   end
 
   def page_end_num
@@ -29,7 +29,8 @@ class MusicXiami2wangyi
 
   def count_page_end_num
     start_browser
-
+    @browser.goto @lib_song_url
+    @browser.goto @lib_song_url
     @browser.goto @lib_song_url
     page = Nokogiri::HTML.parse(@browser.html)
 

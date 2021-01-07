@@ -1,6 +1,9 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'http://gems.ruby-china.com/'
 
 
+
+gem 'pry-coolline'
 gem 'watir'
 gem 'headless'
 gem 'nokogiri'
